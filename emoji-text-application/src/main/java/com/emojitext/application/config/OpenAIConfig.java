@@ -1,4 +1,4 @@
-package com.emojitext.config;
+package com.emojitext.application.config;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,0 +1,6 @@
+dependencies {
+    implementation(project(":emoji-text-application"))
+    implementation 'org.springframework.cloud:spring-cloud-function-adapter-aws:4.0.5'
+    implementation 'org.springframework.cloud:spring-cloud-starter-function-webflux'
+    implementation 'com.amazonaws:aws-lambda-java-events:3.11.3'
+}

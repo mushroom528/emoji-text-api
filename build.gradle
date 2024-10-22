@@ -1,51 +1,49 @@
+buildscript {
+    ext {
+        springBootVersion = "3.3.4"
+        springAiVersion = "1.0.0-M3"
+        lombokVersion = "1.18.30"
+    }
+}
+
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.3.4'
-    id 'io.spring.dependency-management' version '1.1.6'
-    id 'org.graalvm.buildtools.native' version '0.10.3'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version '1.1.4'
 }
 
-group = 'com'
-version = '0.0.1-SNAPSHOT'
+allprojects {
+    group = 'com'
+    version = '1.0.0'
+}
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+subprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = JavaVersion.VERSION_19
+    targetCompatibility = JavaVersion.VERSION_19
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://repo.spring.io/milestone' }
     }
-}
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+    tasks.named('test') {
+        useJUnitPlatform()
     }
-}
 
-repositories {
-    mavenCentral()
-    maven { url 'https://repo.spring.io/milestone' }
-}
-
-ext {
-    set('springAiVersion', "1.0.0-M3")
-}
-
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter'
-    implementation group: 'me.paulschwarz', name: 'spring-dotenv', version: '4.0.0'
-
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
     }
-}
 
-tasks.named('test') {
-    useJUnitPlatform()
+    dependencies {
+        implementation group: 'me.paulschwarz', name: 'spring-dotenv', version: '4.0.0'
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
+
+
 }

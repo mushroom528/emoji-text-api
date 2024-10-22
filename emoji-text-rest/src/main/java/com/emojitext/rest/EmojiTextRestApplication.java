@@ -1,13 +1,13 @@
-package com.emojitext;
+package com.emojitext.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EmojiTextApiApplication {
+public class EmojiTextRestApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EmojiTextApiApplication.class, args);
+        SpringApplication.run(EmojiTextRestApplication.class, args);
     }
 
 }
