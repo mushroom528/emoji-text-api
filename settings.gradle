@@ -1,4 +1,4 @@
 rootProject.name = 'emoji-text'
-include 'emoji-text-application'
+include 'emoji-text-core'
 include 'emoji-text-aws'
 include 'emoji-text-rest'

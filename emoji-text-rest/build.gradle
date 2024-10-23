@@ -1,4 +1,4 @@
 dependencies {
-    implementation(project(':emoji-text-application'))
+    implementation(project(':emoji-text-core'))
     implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
 }
