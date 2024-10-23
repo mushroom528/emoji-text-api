@@ -1,6 +1,16 @@
 dependencies {
-    implementation(project(":emoji-text-application"))
-    implementation 'org.springframework.cloud:spring-cloud-function-adapter-aws:4.0.5'
-    implementation 'org.springframework.cloud:spring-cloud-starter-function-webflux'
-    implementation 'com.amazonaws:aws-lambda-java-events:3.11.3'
+//    implementation(project(":emoji-text-application"))
+    implementation "org.springframework.cloud:spring-cloud-function-adapter-aws:${springCloudVersion}"
+    implementation "org.springframework.cloud:spring-cloud-starter-function-webflux:${springCloudVersion}"
+    implementation "org.springframework.cloud:spring-cloud-starter-function-web:${springCloudVersion}"
+    implementation 'com.amazonaws:aws-lambda-java-core:1.2.3'
+    implementation 'com.amazonaws:aws-lambda-java-events:3.11.4'
+}
+
+task buildZip(type: Zip) {
+    from compileJava
+    from processResources
+    into('lib') {
+        from configurations.runtimeClasspath
+    }
 }
