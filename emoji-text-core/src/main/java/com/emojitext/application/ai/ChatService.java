@@ -15,7 +15,14 @@ public class ChatService {
     public String addEmoji(String text, String level) {
         log.info("addEmoji: text={}, level={}", text, level);
         var prompt = createPrompt(text, level);
+        try {
+            return doChat(prompt);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    private String doChat(String prompt) {
         return client.prompt()
                 .user(prompt)
                 .call()

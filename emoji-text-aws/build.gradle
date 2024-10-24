@@ -1,7 +1,6 @@
 dependencies {
     implementation(project(":emoji-text-core"))
     implementation "org.springframework.cloud:spring-cloud-function-adapter-aws:${springCloudVersion}"
-    implementation "org.springframework.cloud:spring-cloud-starter-function-webflux:${springCloudVersion}"
     implementation "org.springframework.cloud:spring-cloud-starter-function-web:${springCloudVersion}"
     implementation 'com.amazonaws:aws-lambda-java-core:1.2.3'
     implementation 'com.amazonaws:aws-lambda-java-events:3.11.4'

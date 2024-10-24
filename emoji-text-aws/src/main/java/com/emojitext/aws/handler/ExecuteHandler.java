@@ -4,9 +4,9 @@ import org.springframework.cloud.function.adapter.aws.FunctionInvoker;
 
 public class ExecuteHandler extends FunctionInvoker {
 
-    public static final String EXECUTE_HANDLER = "emojiAppender";
+    public static final String FUNCTION_NAME = "emojiAppender";
 
     public ExecuteHandler() {
-        super(EXECUTE_HANDLER);
+        super(FUNCTION_NAME);
     }
 }
