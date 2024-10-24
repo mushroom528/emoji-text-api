@@ -1,4 +1,4 @@
-package com.emojitext.aws.function;
+package com.emojitext.aws.function.sample;
 
 import org.springframework.stereotype.Component;
 

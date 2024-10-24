@@ -1,5 +1,5 @@
 dependencies {
-//    implementation(project(":emoji-text-application"))
+    implementation(project(":emoji-text-core"))
     implementation "org.springframework.cloud:spring-cloud-function-adapter-aws:${springCloudVersion}"
     implementation "org.springframework.cloud:spring-cloud-starter-function-webflux:${springCloudVersion}"
     implementation "org.springframework.cloud:spring-cloud-starter-function-web:${springCloudVersion}"

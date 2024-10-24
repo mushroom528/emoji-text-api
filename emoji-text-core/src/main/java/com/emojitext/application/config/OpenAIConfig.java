@@ -1,5 +1,6 @@
 package com.emojitext.application.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,7 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 
 @Configuration
+@Slf4j
 public class OpenAIConfig {
 
     @Value("classpath:prompt/system-prompt.txt")

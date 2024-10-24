@@ -1,9 +1,10 @@
 package com.emojitext.aws.config;
 
-import org.springframework.context.annotation.ComponentScan;
+import com.emojitext.application.config.ApplicationConfig;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 @Configuration
-@ComponentScan(basePackages = "com.emojitext.aws")
+@Import(ApplicationConfig.class)
 public class AwsConfig {
 }

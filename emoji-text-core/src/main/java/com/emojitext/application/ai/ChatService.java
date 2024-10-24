@@ -1,16 +1,19 @@
 package com.emojitext.application.ai;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ChatService {
 
     private final ChatClient client;
 
     public String addEmoji(String text, String level) {
+        log.info("addEmoji: text={}, level={}", text, level);
         var prompt = createPrompt(text, level);
 
         return client.prompt()
