@@ -8,10 +8,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.retry.annotation.EnableRetry;
 
 @Configuration
 @ComponentScan(basePackages = "com.emojitext.application")
 @Import(OpenAIConfig.class)
+@EnableRetry
 public class ApplicationConfig {
 
     @Bean

@@ -39,9 +39,12 @@ subprojects {
     }
 
     dependencies {
-        implementation group: 'me.paulschwarz', name: 'spring-dotenv', version: '4.0.0'
         compileOnly "org.projectlombok:lombok:${lombokVersion}"
         annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        testCompileOnly group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
+        testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
+
+        implementation group: 'me.paulschwarz', name: 'spring-dotenv', version: '4.0.0'
         testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }

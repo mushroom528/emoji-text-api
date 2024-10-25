@@ -3,6 +3,7 @@ package com.emojitext.rest.api;
 import com.emojitext.application.ai.ChatService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,5 +18,10 @@ public class EmojiRestController {
     @PostMapping("/api/chat")
     public String emoji(@RequestBody EmojiTextRequest request) {
         return chatService.addEmoji(request.text(), request.level());
+    }
+
+    @GetMapping("/api/test")
+    public String test() {
+        return chatService.addEmoji("안녕하세요!", "large");
     }
 }
