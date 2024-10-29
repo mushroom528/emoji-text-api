@@ -4,9 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.retry.NonTransientAiException;
-import org.springframework.retry.annotation.Backoff;
-import org.springframework.retry.annotation.Recover;
-import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,23 +11,17 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class ChatService {
 
-    private final ChatClientManager chatClientManager;
+    private final ChatClient client;
 
-    @Retryable(
-            retryFor = {NonTransientAiException.class},
-            maxAttempts = 10,
-            backoff = @Backoff(delay = 500)
-    )
     public String addEmoji(String text, String level) {
         log.info("addEmoji: text={}, level={}", text, level);
         try {
-            ChatClient client = chatClientManager.getNextClient(); // 새로운 클라이언트 획득
             var prompt = createPrompt(text, level);
             return doChat(client, prompt);
         } catch (NonTransientAiException e) {
             if (e.getMessage().contains("429")) {
                 log.warn("Rate limit exceeded.");
-                throw e;
+                return recover(e, text, level);
             }
             throw e;
         }
@@ -54,7 +45,6 @@ public class ChatService {
                 """.formatted(text, level);
     }
 
-    @Recover
     public String recover(NonTransientAiException e, String text, String level) {
         log.error("All retry attempts failed for text: {}, level: {}, error: {}",
                 text, level, e.getMessage());

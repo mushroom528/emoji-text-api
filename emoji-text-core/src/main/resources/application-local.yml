@@ -2,7 +2,6 @@ spring:
   config:
     import:
       - optional:file:.env[.properties]
-      - api-key.yml
   ai:
     openai:
       api-key: ${OPEN_API_KEY1}

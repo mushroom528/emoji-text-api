@@ -1,4 +1,0 @@
-openai:
-  api-key:
-    ${OPEN_API_KEY1},
-    ${OPEN_API_KEY2}
